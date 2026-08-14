@@ -1,0 +1,16 @@
+-- Write the SQL query to create the tables given above (Customers & Orders) with the given constraints like primary key, unique key, foreign key (do not insert data into the table).
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(255),
+    city VARCHAR(255),
+    customer_email VARCHAR(255) UNIQUE -- adding unique value in customers!
+);
+
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
