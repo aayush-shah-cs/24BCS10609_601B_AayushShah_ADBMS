@@ -1,0 +1,33 @@
+CREATE TABLE employees (
+    employee_id INT,
+    name VARCHAR(50),
+    department_id INT,
+    salary NUMERIC
+);
+
+INSERT INTO employees VALUES (101, 'Rahul', 10, 30000);
+INSERT INTO employees VALUES (102, 'Priya', 20, 40000);
+INSERT INTO employees VALUES (103, 'Aman', 10, 50000);
+INSERT INTO employees VALUES (104, 'Neha', 30, 45000);
+INSERT INTO employees VALUES (105, 'Riya', 10, 35000);
+
+SELECT * FROM employees;
+
+DO $$
+BEGIN
+    UPDATE employees
+    SET salary = salary * 1.1
+    WHERE department_id = 10;
+
+    IF FOUND THEN
+        RAISE NOTICE '% rows updated.', (
+            SELECT COUNT(*)
+            FROM employees
+            WHERE department_id = 10
+        );
+    ELSE
+        RAISE NOTICE 'No rows updated.';
+    END IF;
+END $$;
+
+SELECT * FROM employees;
