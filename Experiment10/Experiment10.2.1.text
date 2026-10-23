@@ -1,0 +1,32 @@
+drop table Employees;
+CREATE TABLE Employees (
+    emp_id INT,
+    emp_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT
+);
+
+INSERT INTO Employees VALUES
+(105, 'Rishabh', 'IT', 50000),
+(102, 'Aman', 'HR', 45000),
+(108, 'Vivek', 'IT', 60000),
+(101, 'Aayush', 'Finance', 55000),
+(104, 'Raman', 'HR', 48000),
+(103, 'nidhi', 'IT', 52000);
+
+SELECT * FROM Employees;
+
+CREATE INDEX IX_Employees_emp_id
+ON Employees(emp_id ASC);
+
+CLUSTER Employees USING IX_Employees_emp_id;
+
+SELECT * FROM Employees;
+
+SELECT *
+FROM Employees
+WHERE emp_id = 104;
+
+SELECT *
+FROM Employees
+ORDER BY emp_id DESC;
